@@ -1,0 +1,33 @@
+## Visual Studio ##
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Build Results ##
+[Bb]in/
+[Oo]bj/
+dist/
+build/
+
+## NuGet ##
+packages/
+*.nupkg
+
+## Test Results ##
+TestResults/
+*.trd
+*.trdx
+
+## .NET Core / Standard ##
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Other ##
+thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.log
