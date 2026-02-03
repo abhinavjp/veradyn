@@ -1,0 +1,22 @@
+{
+    "iisSettings": {
+        "windowsAuthentication": false,
+        "anonymousAuthentication": true,
+        "iisExpress": {
+            "applicationUrl": "http://localhost:52700",
+            "sslPort": 0
+        }
+    },
+    "profiles": {
+        "IIS Express": {
+            "commandName": "IISExpress",
+            "launchBrowser": true,
+            "launchUrl": ""
+        },
+        "IIS Express (Manual)": {
+            "commandName": "Executable",
+            "executablePath": "C:\\Program Files (x86)\\IIS Express\\iisexpress.exe",
+            "commandLineArgs": "/path:\"d:\\Projects\\Veradyn\\src\\backend\\Veradyn.ApiHost\" /port:52700"
+        }
+    }
+}
