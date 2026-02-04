@@ -2,7 +2,9 @@
     <h2>Permission Request</h2>
     <p>The application is requesting access to:</p>
     <ul>
-        <li *ngFor="let scope of scopes">{{ scope }}</li>
+        @for (scope of scopes; track scope) {
+        <li>{{ scope }}</li>
+        }
     </ul>
     <div class="actions">
         <button (click)="allow()">Allow</button>

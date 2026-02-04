@@ -41,8 +41,9 @@ It implements the **OAuth 2.0** and **OpenID Connect (OIDC)** protocols, featuri
    ```
 3. Start the development server:
    ```powershell
-   ng serve
+   npm start
    ```
+   > **Note**: Use `npm start` instead of `ng serve` to avoid PowerShell execution issues on Windows.
 4. Application will be available at: `http://localhost:4200`
 
 ## 🔑 Default Credentials
