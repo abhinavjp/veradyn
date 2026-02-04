@@ -1,18 +1,56 @@
-/* Root Variables */
+/* Root Variables - Light Mode (Default) */
 :root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --dark-bg: #0f172a;
-    --card-bg: #1e293b;
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
+    /* Colors */
+    --bg-primary: #f8fafc;
+    /* Slate 50 */
+    --bg-secondary: #ffffff;
+    /* White */
+    --text-primary: #0f172a;
+    /* Slate 900 */
+    --text-secondary: #475569;
+    /* Slate 600 */
     --text-muted: #94a3b8;
-    --accent-purple: #667eea;
-    --accent-pink: #f5576c;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+    /* Slate 400 */
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-border: rgba(148, 163, 184, 0.2);
+
+    /* Gradients */
+    --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    /* Indigo-600 to Violet-600 */
+    --hero-overlay: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%);
+
+    /* Accents */
+    --accent-color: #4f46e5;
+    --accent-hover: #4338ca;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.15);
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    /* Slate 900 */
+    --bg-secondary: #1e293b;
+    /* Slate 800 */
+    --text-primary: #f8fafc;
+    /* Slate 50 */
+    --text-secondary: #cbd5e1;
+    /* Slate 300 */
+    --text-muted: #94a3b8;
+    /* Slate 400 */
+    --card-bg: rgba(30, 41, 59, 0.5);
+    --card-border: rgba(255, 255, 255, 0.1);
+
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --hero-overlay: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+
+    --accent-color: #667eea;
+    --accent-hover: #5a67d8;
+
     --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.3);
 }
 
@@ -25,15 +63,53 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: var(--dark-bg);
+    background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .landing-page {
     min-height: 100vh;
-    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    background: var(--bg-primary);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--accent-color);
+}
+
+.theme-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--text-primary);
+    transition: transform 0.5s ease;
+}
+
+.theme-toggle:hover .theme-icon {
+    transform: rotate(15deg);
+    color: var(--accent-color);
 }
 
 /* Hero Section */
@@ -54,7 +130,7 @@ body {
     right: -20%;
     width: 800px;
     height: 800px;
-    background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+    background: var(--hero-overlay);
     border-radius: 50%;
     animation: pulse 8s ease-in-out infinite;
 }
@@ -182,15 +258,16 @@ body {
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--bg-secondary);
     color: var(--text-primary);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--card-border);
     backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--card-bg);
     transform: translateY(-2px);
+    border-color: var(--accent-color);
 }
 
 .hero-visual {
@@ -209,13 +286,14 @@ body {
 
 .floating-card {
     position: absolute;
-    background: rgba(30, 41, 59, 0.8);
+    background: var(--card-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--card-border);
     border-radius: 16px;
     padding: 1.5rem;
     box-shadow: var(--shadow-lg);
     animation: floatCard 4s ease-in-out infinite;
+    color: var(--text-primary);
 }
 
 .card-1 {
@@ -283,9 +361,9 @@ body {
 }
 
 .feature-card {
-    background: rgba(30, 41, 59, 0.5);
+    background: var(--card-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--card-border);
     border-radius: 16px;
     padding: 2rem;
     transition: all 0.3s ease;
@@ -295,7 +373,7 @@ body {
 .feature-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
-    border-color: var(--accent-purple);
+    border-color: var(--accent-color);
 }
 
 .feature-icon {
@@ -330,7 +408,7 @@ body {
 /* Tech Stack Section */
 .tech-stack {
     padding: 4rem 2rem;
-    background: rgba(15, 23, 42, 0.5);
+    background: var(--bg-secondary);
 }
 
 .tech-grid {
@@ -386,16 +464,16 @@ body {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
-    background: rgba(30, 41, 59, 0.3);
-    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 16px;
     padding: 2rem;
     transition: all 0.3s ease;
 }
 
 .step:hover {
-    background: rgba(30, 41, 59, 0.5);
-    border-color: var(--accent-purple);
+    background: var(--bg-secondary);
+    border-color: var(--accent-color);
 }
 
 .step-number {
@@ -410,6 +488,7 @@ body {
     font-weight: 700;
     flex-shrink: 0;
     box-shadow: var(--shadow-md);
+    color: white;
 }
 
 .step-content h3 {
@@ -420,15 +499,19 @@ body {
 
 .step-content code {
     display: block;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    border: 1px solid var(--card-border);
     border-radius: 8px;
     padding: 1rem;
     font-family: 'Fira Code', 'Courier New', monospace;
     font-size: 0.875rem;
-    color: #a5f3fc;
+    color: var(--accent-hover);
     overflow-x: auto;
     margin-top: 0.5rem;
+}
+
+[data-theme="dark"] .step-content code {
+    color: #a5f3fc;
 }
 
 .step-content p {
@@ -436,14 +519,14 @@ body {
 }
 
 .step-content strong {
-    color: var(--accent-purple);
+    color: var(--accent-color);
     font-weight: 600;
 }
 
 /* Footer */
 .footer {
-    background: rgba(15, 23, 42, 0.8);
-    border-top: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--card-border);
     padding: 3rem 2rem 1.5rem;
 }
 
@@ -477,13 +560,13 @@ body {
 }
 
 .footer-section a:hover {
-    color: var(--accent-purple);
+    color: var(--accent-color);
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--card-border);
 }
 
 .footer-bottom p {
@@ -535,6 +618,6 @@ html {
 
 /* Selection */
 ::selection {
-    background: var(--accent-purple);
+    background: var(--accent-color);
     color: white;
 }

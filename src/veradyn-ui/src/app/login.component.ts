@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms'; // Import FormsModule
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 
 @Component({
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   returnUrl = '';
   error = '';
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -28,11 +28,14 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (res) => {
           if (res.success) {
-            window.location.href = this.returnUrl;
+            this.router.navigateByUrl(this.returnUrl);
+          } else {
+            this.error = res.message || 'Login failed';
           }
         },
         error: (err) => {
-          this.error = 'Invalid credentials';
+          console.error('Login error:', err);
+          this.error = 'Invalid credentials or server error';
         }
       });
   }

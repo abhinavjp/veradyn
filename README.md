@@ -8,7 +8,7 @@ It implements the **OAuth 2.0** and **OpenID Connect (OIDC)** protocols, featuri
 - **Authorization Code Flow**: Secure flow with **PKCE** (Proof Key for Code Exchange) enforcement.
 - **Standalone**: No external database required (In-Memory Unit of Work).
 - **Secure by Default**: RS256 signing, S256 PKCE challenges, Validation Logic.
-- **Angular UI**: Custom Login and Consent pages.
+- **Angular UI**: Custom Login and Consent pages with **Dual Theme (Light/Dark)** support.
 
 ## 🛠️ Technology Stack
 - **Backend**: .NET Framework 4.7.2 (Web API 2)
